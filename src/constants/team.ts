@@ -86,20 +86,4 @@ export const TEAM_MEMBERS: TeamMember[] = [
       instagram: 'makutucoach',
     },
   },
-  {
-    name: 'Elizaveta Bychkova',
-    role: 'Backend Engineer',
-    photo: 'lisa',
-    contacts: {
-      linkedin: 'lizavettus',
-      telegram: 'lizavettus',
-      instagram: 'lizavettus',
-    },
-  },
-  {
-    name: 'Ilina Nigmatullina',
-    role: 'Product Manager',
-    photo: 'ilina',
-    contacts: null,
-  },
 ]
