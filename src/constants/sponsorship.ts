@@ -49,6 +49,7 @@ export const SPONSORS_BUDGET = {
   rows: [
     { label: 'Catering (100 people, full day)', amount: '€700–800' },
     { label: 'Merch (t-shirts, notebooks)', amount: '€2,000' },
+    { label: 'Video Production', amount: '€2,000' },
     { label: 'Speaker gifts (8 speakers)', amount: '€800' },
     { label: 'Attendee raffles & prizes', amount: '€300' },
     { label: 'Decor & stage design', amount: '€600–800' },
@@ -56,7 +57,7 @@ export const SPONSORS_BUDGET = {
     { label: 'Startit (symbolic venue fee)', amount: '€500' },
     { label: 'Printing (badges, programs)', amount: '€300' },
   ],
-  total: { label: 'Total Budget', amount: '~€5,700–6,000' },
+  total: { label: 'Total Budget', amount: '~€7,700–8,000' },
 } as const
 
 export const SPONSORS_TIERS = {
