@@ -82,7 +82,7 @@ export const TBA_SPEAKERS: Speaker[] = [
     topic: TBA_TOPIC,
     bio: TBA_BIO,
     contacts: null,
-    confirmed: false,
+    confirmed: true,
   },
   {
     name: 'Sergey Bryukhovskikh',
@@ -90,7 +90,7 @@ export const TBA_SPEAKERS: Speaker[] = [
     topic: TBA_TOPIC,
     bio: TBA_BIO,
     contacts: null,
-    confirmed: false,
+    confirmed: true,
   },
 ]
 
