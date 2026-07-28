@@ -11,9 +11,6 @@ export type Speaker = {
   confirmed: boolean
 }
 
-// Fill in as speakers are confirmed. Photo id is a Cloudinary public id
-// uploaded to the `it-connect-speakers/` folder — see getImageUrl().
-const TBA_TOPIC = 'Selection in progress'
 const TBA_BIO = 'Chosen from 150 applications across many countries. Reveal coming soon.'
 
 export const CONFIRMED_SPEAKERS: Speaker[] = [
@@ -79,7 +76,7 @@ export const TBA_SPEAKERS: Speaker[] = [
   {
     name: 'Aleksandar Stojanovic',
     photo: null,
-    topic: TBA_TOPIC,
+    topic: 'The Futures We Can\'t See: How our own bubbles lie to us about AI.',
     bio: TBA_BIO,
     contacts: null,
     confirmed: true,
@@ -87,7 +84,7 @@ export const TBA_SPEAKERS: Speaker[] = [
   {
     name: 'Sergey Bryukhovskikh',
     photo: null,
-    topic: TBA_TOPIC,
+    topic: 'A Planet-Sized Telescope Built for $300',
     bio: TBA_BIO,
     contacts: null,
     confirmed: true,
