@@ -39,15 +39,15 @@ export const NUMBERS_CONTENT = {
   title: 'THE EVENT IN NUMBERS',
   stats: [
     {
-      value: '139',
+      value: '150',
       label: 'Speaker applications submitted from 11 countries',
     },
     {
-      value: '~8',
+      value: '9',
       label: 'Carefully selected inspiring talks',
     },
     {
-      value: '100',
+      value: '80',
       label: 'Exclusive seats for attendees',
     },
   ],
@@ -58,6 +58,12 @@ export const PARTNERSHIP_CONTENT = {
   title: 'PARTNERSHIP',
   text: "If your company or brand wants to be associated with ideas, innovation and a community of professionals, we'd love to talk. Explore our sponsorship packages and find the right fit.",
   cta: 'View Sponsorship Packages',
+} as const
+
+export const SPEAKERS_CONTENT = {
+  title: 'SPEAKERS',
+  intro:
+    'Nine speakers, selected from 139 applications across 11 countries. Lineup announced as it comes together.',
 } as const
 
 export const TEAM_CONTENT = {

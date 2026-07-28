@@ -1,23 +1,18 @@
 import { Container, Section, SectionTitle, Text } from '@/uikit'
 import { SPONSORS_VENUE } from '@/constants/sponsorship'
 import { STARTIT_LINKEDIN_URL } from '@/constants/links'
-import {getImageUrl} from "@/utils/images.ts";
-
+import { getImageUrl } from '@/utils/images'
 import styles from './SponsorsVenue.module.scss'
 
 export function SponsorsVenue() {
-  const imageUrl = getImageUrl(
-    'startit_logo-vertikalni-crni_RGB_yhewer',
-    300,
-    true,
-  )
+  const imageUrl = getImageUrl('startit_logo-vertikalni-crni_RGB_yhewer', 200, 'partners')
 
   return (
     <Section className={styles.venue}>
       <Container>
         <SectionTitle className={styles.title}>{SPONSORS_VENUE.title}</SectionTitle>
         <Text className={styles.text}>{SPONSORS_VENUE.text}</Text>
-        <img src={imageUrl} alt="" className={styles.image}/>
+        <img src={imageUrl} alt="Startit" className={styles.image} />
         <a
           href={STARTIT_LINKEDIN_URL}
           className={styles.link}

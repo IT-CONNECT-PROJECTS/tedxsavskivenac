@@ -7,6 +7,7 @@ import { SponsorsHero } from '@/components/sections/sponsors/SponsorsHero/Sponso
 import { SponsorsInKind } from '@/components/sections/sponsors/SponsorsInKind/SponsorsInKind'
 import { SponsorsNumbers } from '@/components/sections/sponsors/SponsorsNumbers/SponsorsNumbers'
 import { SponsorsTiers } from '@/components/sections/sponsors/SponsorsTiers/SponsorsTiers'
+import { SponsorsPartners } from '@/components/sections/sponsors/SponsorsPartners/SponsorsPartners'
 import { SponsorsVenue } from '@/components/sections/sponsors/SponsorsVenue/SponsorsVenue'
 import { SponsorsWhy } from '@/components/sections/sponsors/SponsorsWhy/SponsorsWhy'
 import { Seo } from '@/components/Seo/Seo'
@@ -25,6 +26,7 @@ export function SponsorsPage() {
         <SponsorsBudget />
         <SponsorsTiers />
         <SponsorsInKind />
+        <SponsorsPartners />
         <SponsorsVenue />
         <SponsorsCta />
       </main>

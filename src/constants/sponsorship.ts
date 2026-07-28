@@ -169,6 +169,33 @@ export const SPONSORS_VENUE = {
   linkedinLabel: 'Startit on LinkedIn',
 } as const
 
+export type SponsorPartner = {
+  name: string
+  logo: string
+  description: string
+  url: string
+  linkLabel: string
+}
+
+export const SPONSORS_PARTNERS = {
+  title: 'Partners',
+  intro: 'Brands and makers standing with TEDxSavskiVenac.',
+  items: [
+    {
+      name: "A'dam Stroopwafel",
+      logo: 'A_dam-Plava-Pozadina_x6lkwv',
+      description: 'The first original Dutch stroopwafel in Serbia.',
+      url: 'https://www.instagram.com/adam_stroopwafel',
+      linkLabel: 'Instagram',
+    },
+  ] satisfies SponsorPartner[],
+  ctaCard: {
+    title: 'Become a Partner',
+    description: 'Join brands supporting ideas that spark change in Belgrade.',
+    label: 'Get in touch',
+  },
+} as const
+
 export const SPONSORS_CTA = {
   title: "Let's Talk",
   text: "If your company or brand wants to be associated with ideas, innovation, and a community of professionals — we'd love to talk. We're open to partnerships that make sense for both sides.",
@@ -180,5 +207,6 @@ export const SPONSORS_NAV_ITEMS = [
   { label: 'Why Partner', href: '#why' },
   { label: 'Packages', href: '#tiers' },
   { label: 'In-Kind', href: '#inkind' },
+  { label: 'Partners', href: '#partners' },
   { label: 'Contact', href: '#contact' },
 ] as const

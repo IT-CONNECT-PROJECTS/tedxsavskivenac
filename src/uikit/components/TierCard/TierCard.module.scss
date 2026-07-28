@@ -34,7 +34,7 @@
 
 .availability {
   color: $color-muted;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 1.25rem;
@@ -46,10 +46,10 @@
   margin: 0;
 
   li {
-    padding: 0.4rem 0;
-    color: rgba($color-text, 0.8);
-    font-size: 0.8125rem;
-    line-height: 1.4;
+    padding: 0.5rem 0;
+    color: rgba($color-text, 0.85);
+    font-size: clamp(0.875rem, 2.2vw, 0.9375rem);
+    line-height: 1.5;
     border-bottom: 1px solid rgba($color-text, 0.05);
 
     &::before {

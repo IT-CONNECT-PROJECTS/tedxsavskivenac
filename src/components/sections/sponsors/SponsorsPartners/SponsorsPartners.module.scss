@@ -1,0 +1,95 @@
+.partners {
+  border-top: 1px solid rgba($color-text, 0.08);
+}
+
+.title {
+  color: $color-ted-red;
+  text-align: center;
+}
+
+.intro {
+  max-width: 48rem;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include from-md {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: rgba($color-text, 0.03);
+  border-top: 2px solid $color-ted-red;
+  padding: 2rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba($color-text, 0.06);
+
+    .link {
+      color: $color-ted-red;
+    }
+  }
+}
+
+.ctaCard {
+  justify-content: center;
+  border-top-color: rgba($color-text, 0.35);
+
+  .name {
+    color: $color-ted-red;
+  }
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  display: block;
+  max-width: 15rem;
+  max-height: 7rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.name {
+  @include heading-brutal;
+  font-size: clamp(0.875rem, 3vw, 1.125rem);
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  color: $color-muted;
+  font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+
+.link {
+  margin-top: auto;
+  font-family: $font-family-heading;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-text;
+  transition: color $transition-fast;
+}
