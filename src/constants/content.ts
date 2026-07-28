@@ -63,7 +63,7 @@ export const PARTNERSHIP_CONTENT = {
 export const SPEAKERS_CONTENT = {
   title: 'SPEAKERS',
   intro:
-    'Nine speakers, selected from 139 applications across 11 countries. Lineup announced as it comes together.',
+    'Nine speakers, selected from 150 applications. Lineup announced as it comes together.',
 } as const
 
 export const TEAM_CONTENT = {
