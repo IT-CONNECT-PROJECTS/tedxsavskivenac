@@ -25,7 +25,13 @@ export function SponsorsPartners() {
                 <img
                   src={getImageUrl(partner.logo, 400, 'partners')}
                   alt=""
-                  className={styles.logo}
+                  className={[
+                    styles.logo,
+                    partner.invertLogo ? styles.logoInvert : '',
+                    partner.whiteLogo ? styles.logoWhite : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
                   loading="lazy"
                   decoding="async"
                 />
@@ -37,6 +43,9 @@ export function SponsorsPartners() {
           ))}
 
           <a href={PARTNER_MAILTO} className={`${styles.card} ${styles.ctaCard}`}>
+            <div className={styles.logoWrap} aria-hidden="true">
+              <span className={styles.youMark}>YOU</span>
+            </div>
             <h3 className={styles.name}>{SPONSORS_PARTNERS.ctaCard.title}</h3>
             <p className={styles.description}>{SPONSORS_PARTNERS.ctaCard.description}</p>
             <span className={styles.link}>{SPONSORS_PARTNERS.ctaCard.label}</span>

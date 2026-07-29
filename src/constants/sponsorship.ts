@@ -175,12 +175,40 @@ export type SponsorPartner = {
   description: string
   url: string
   linkLabel: string
+  invertLogo?: boolean
+  whiteLogo?: boolean
 }
 
 export const SPONSORS_PARTNERS = {
   title: 'Partners',
   intro: 'Brands and makers standing with TEDxSavskiVenac.',
   items: [
+    {
+      name: 'Kleos',
+      logo: 'p5jzo7mybknmfqdbyyjn',
+      description:
+        'Global teams management platform — hire and pay contractors across 242 locations with compliance built in.',
+      url: 'https://kleos.io/',
+      linkLabel: 'Website',
+      invertLogo: true,
+    },
+    {
+      name: 'Knjaz Miloš',
+      logo: '20240310112026_Логотип_компаније_Књаз_Милош_rtcbnp',
+      description:
+        "One of Serbia's leading mineral water and soft-drink producers, built on more than two centuries of tradition.",
+      url: 'https://knjaz.rs/',
+      linkLabel: 'Website',
+      whiteLogo: true,
+    },
+    {
+      name: 'Imlek',
+      logo: 'images_ao1lyj',
+      description:
+        'A dairy company of long tradition and proven quality — milk, yogurt, and everyday products for the region.',
+      url: 'https://www.imlek.rs/',
+      linkLabel: 'Website',
+    },
     {
       name: "A'dam Stroopwafel",
       logo: 'A_dam-Plava-Pozadina_x6lkwv',

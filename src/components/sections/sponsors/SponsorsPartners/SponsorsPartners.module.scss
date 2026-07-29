@@ -29,7 +29,7 @@
   flex-direction: column;
   background: rgba($color-text, 0.03);
   border-top: 2px solid $color-ted-red;
-  padding: 2rem 1.5rem;
+  padding: 0 0 1.5rem;
   text-decoration: none;
   color: inherit;
   transition: background $transition-fast;
@@ -43,30 +43,47 @@
   }
 }
 
-.ctaCard {
-  justify-content: center;
-  border-top-color: rgba($color-text, 0.35);
-
-  .name {
-    color: $color-ted-red;
-  }
-}
-
 .logoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 5.5rem;
+  height: 8rem;
+  flex-shrink: 0;
   margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  overflow: hidden;
 }
 
 .logo {
   display: block;
-  max-width: 15rem;
-  max-height: 7rem;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
+  object-position: center;
+}
+
+.logoInvert {
+  filter: invert(1);
+}
+
+.logoWhite {
+  filter: brightness(0) invert(1);
+}
+
+.youMark {
+  @include heading-brutal;
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  line-height: 1;
+  color: $color-ted-red;
+  letter-spacing: 0.04em;
+}
+
+.name,
+.description,
+.link {
+  padding-inline: 1.5rem;
 }
 
 .name {
@@ -76,8 +93,8 @@
 }
 
 .description {
-  color: $color-muted;
-  font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
+  color: rgba($color-text, 0.72);
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
   line-height: 1.6;
   margin: 0 0 1.25rem;
   flex: 1;
@@ -92,4 +109,10 @@
   letter-spacing: 0.06em;
   color: $color-text;
   transition: color $transition-fast;
+}
+
+.ctaCard {
+  .name {
+    color: $color-ted-red;
+  }
 }
