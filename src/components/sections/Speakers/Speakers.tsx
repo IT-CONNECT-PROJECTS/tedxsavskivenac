@@ -10,9 +10,12 @@ export function Speakers() {
         <SectionTitle className={styles.title}>{SPEAKERS_CONTENT.title}</SectionTitle>
         <Text className={styles.intro}>{SPEAKERS_CONTENT.intro}</Text>
         <div className={styles.grid}>
-          {SPEAKERS.map((speaker, index) => (
-            <SpeakerCard key={`${speaker.name}-${index}`} speaker={speaker} />
-          ))}
+          {SPEAKERS
+            .sort((a, b) => a.name.split(' ')[1].localeCompare(b.name.split(' ')[1]))
+            .map((speaker, index) => (
+                <SpeakerCard key={`${speaker.name}-${index}`} speaker={speaker} />
+              )
+            )}
         </div>
       </Container>
     </Section>

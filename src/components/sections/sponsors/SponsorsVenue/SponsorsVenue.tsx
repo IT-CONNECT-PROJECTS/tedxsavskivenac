@@ -8,7 +8,7 @@ export function SponsorsVenue() {
   const imageUrl = getImageUrl('startit_logo-vertikalni-crni_RGB_yhewer', 200, 'partners')
 
   return (
-    <Section className={styles.venue}>
+    <Section className={styles.venue} variant="compact">
       <Container>
         <SectionTitle className={styles.title}>{SPONSORS_VENUE.title}</SectionTitle>
         <Text className={styles.text}>{SPONSORS_VENUE.text}</Text>

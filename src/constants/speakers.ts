@@ -11,8 +11,6 @@ export type Speaker = {
   confirmed: boolean
 }
 
-const TBA_BIO = 'Chosen from 150 applications across many countries. Reveal coming soon.'
-
 export const CONFIRMED_SPEAKERS: Speaker[] = [
   {
     name: 'Nadezhda Orlova',
@@ -75,17 +73,17 @@ export const CONFIRMED_SPEAKERS: Speaker[] = [
 export const TBA_SPEAKERS: Speaker[] = [
   {
     name: 'Aleksandar Stojanovic',
-    photo: null,
+    photo: 'TEDx_-_Aleksandar_Stojanovic_2_uk7yhv',
     topic: 'The Futures We Can\'t See: How our own bubbles lie to us about AI.',
-    bio: TBA_BIO,
+    bio: 'Director General at DARI Foundation',
     contacts: null,
     confirmed: true,
   },
   {
     name: 'Sergey Bryukhovskikh',
-    photo: null,
+    photo: 'IMG_2045_mckbg2',
     topic: 'A Planet-Sized Telescope Built for $300',
-    bio: TBA_BIO,
+    bio: 'Head of Technology at AltDev',
     contacts: null,
     confirmed: true,
   },
