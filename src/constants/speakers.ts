@@ -11,7 +11,7 @@ export type Speaker = {
   confirmed: boolean
 }
 
-export const CONFIRMED_SPEAKERS: Speaker[] = [
+export const SPEAKERS: Speaker[] = [
   {
     name: 'Nadezhda Orlova',
     photo: 'Orlova_jsuiv4',
@@ -39,7 +39,7 @@ export const CONFIRMED_SPEAKERS: Speaker[] = [
   {
     name: 'Dmitrii Ilenkov',
     photo: 'аватар_f1pbyt',
-    topic: 'From Clinical Protocols to Better Projects',
+    topic: 'P3․express method: keep it simple, make it big',
     bio: 'Author, entrepreneur',
     contacts: null,
     confirmed: true,
@@ -64,13 +64,10 @@ export const CONFIRMED_SPEAKERS: Speaker[] = [
     name: 'Andrea Čontoš',
     photo: 'Andrea_Čontoš_portret_1_1_xwbv9n',
     topic: 'The art of thinking in the age of AI',
-    bio: 'Neurobiologist & Author',
+    bio: 'Neurobiologist & Author, Founder of Brain factory',
     contacts: null,
     confirmed: true,
   },
-]
-
-export const TBA_SPEAKERS: Speaker[] = [
   {
     name: 'Aleksandar Stojanovic',
     photo: 'TEDx_-_Aleksandar_Stojanovic_2_uk7yhv',
@@ -88,5 +85,3 @@ export const TBA_SPEAKERS: Speaker[] = [
     confirmed: true,
   },
 ]
-
-export const SPEAKERS: Speaker[] = [...CONFIRMED_SPEAKERS, ...TBA_SPEAKERS]
