@@ -86,4 +86,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
       instagram: 'makutucoach',
     },
   },
+  {
+    name: 'Ekaterina Koroleva',
+    role: 'Fullstack QA',
+    photo: 'ekaterinaPhoto',
+    contacts: {
+      linkedin: 'kate-koroleva',
+      telegram: 'FennyKat',
+    },
+  },
 ]
