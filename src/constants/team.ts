@@ -58,7 +58,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: 'Anastasia Toropova',
-    role: 'Professional Couch',
+    role: 'Professional Coach',
     photo: 'anastasia',
     contacts: {
       linkedin: 'nastyatoropova',
