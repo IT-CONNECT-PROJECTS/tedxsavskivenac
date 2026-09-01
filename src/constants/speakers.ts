@@ -71,7 +71,7 @@ export const SPEAKERS: Speaker[] = [
   {
     name: 'Aleksandar Stojanovic',
     photo: 'TEDx_-_Aleksandar_Stojanovic_2_uk7yhv',
-    topic: 'The Futures We Can\'t See: How our own bubbles lie to us about AI.',
+    topic: 'The AI future planted in your head',
     bio: 'Director General at DARI Foundation',
     contacts: null,
     confirmed: true,
