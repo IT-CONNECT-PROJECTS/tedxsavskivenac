@@ -22,7 +22,7 @@ export function SpeakerCard({ speaker }: SpeakerCardProps) {
         {speaker.confirmed && speaker.photo ? (
           <img
             src={getImageUrl(speaker.photo, 700, 'speakers')}
-            alt={speaker.name}
+            alt={`${speaker.name} — speaker, TEDxSavskiVenac Beograd`}
             className={styles.photo}
             loading="lazy"
             decoding="async"

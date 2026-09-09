@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tedxsavskivenac.com/sitemap.xml
+Sitemap: https://www.tedxsavskivenac.com/sitemap.xml

@@ -6,19 +6,23 @@ import {
   TICKETS_URL,
 } from '@/constants/links'
 
-export const SITE_URL = 'https://tedxsavskivenac.com'
+export const SITE_URL = 'https://www.tedxsavskivenac.com'
 export const SITE_NAME = 'TEDxSavskiVenac'
 export const SITE_LOCALE = 'en_US'
 
 export const SEO = {
-  title: 'TEDxSavskiVenac 2026 | Small Shifts, Big Impact',
+  title: 'TEDxSavskiVenac 2026 | TEDx Beograd — Small Shifts, Big Impact',
   description:
-    'Join TEDxSavskiVenac on October 10, 2026 at Startit Center, Belgrade. An independent TEDx event where local energy sparks global ideas. Theme: Small Shifts, Big Impact.',
+    'TEDx dogadjaj u Beogradu: TEDxSavskiVenac, 10. oktobar 2026, Startit Center. Independent TEDx event — Small Shifts, Big Impact. Local energy, global ideas.',
   keywords: [
     'TEDxSavskiVenac',
-    'TEDx',
+    'TEDx Beograd',
+    'TEDx Belgrade',
+    'TEDx dogadjaj',
+    'Beograd',
     'Belgrade',
     'Startit Center',
+    'Startit',
     'conference',
     'ideas',
     'Small Shifts Big Impact',
@@ -26,7 +30,7 @@ export const SEO = {
   ].join(', '),
   author: SITE_NAME,
   themeColor: '#000000',
-  ogImage: `${SITE_URL}/og-image.svg`,
+  ogImage: `${SITE_URL}/og-image.png`,
   eventDate: '2026-10-10',
   eventStartTime: '10:00',
   eventEndTime: '18:00',
@@ -35,6 +39,38 @@ export const SEO = {
   venueCountry: 'RS',
   theme: 'Small Shifts, Big Impact',
 } as const
+
+const TICKET_VALID_FROM = '2026-01-01'
+
+export const EVENT_OFFERS = [
+  {
+    '@type': 'Offer',
+    name: 'Blind',
+    price: '1800',
+    priceCurrency: 'RSD',
+    url: TICKETS_URL,
+    availability: 'https://schema.org/SoldOut',
+    validFrom: TICKET_VALID_FROM,
+  },
+  {
+    '@type': 'Offer',
+    name: 'Early Bird',
+    price: '2400',
+    priceCurrency: 'RSD',
+    url: TICKETS_URL,
+    availability: 'https://schema.org/SoldOut',
+    validFrom: TICKET_VALID_FROM,
+  },
+  {
+    '@type': 'Offer',
+    name: 'Regular',
+    price: '3600',
+    priceCurrency: 'RSD',
+    url: TICKETS_URL,
+    availability: 'https://schema.org/InStock',
+    validFrom: TICKET_VALID_FROM,
+  },
+] as const
 
 export const EVENT_SCHEMA = {
   '@context': 'https://schema.org',
@@ -65,16 +101,7 @@ export const EVENT_SCHEMA = {
     email: CONTACT_EMAIL,
     sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
   },
-  performer: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-  },
-  offers: {
-    '@type': 'Offer',
-    url: TICKETS_URL,
-    availability: 'https://schema.org/InStock',
-    validFrom: '2026-01-01',
-  },
+  offers: EVENT_OFFERS,
   about: HERO_CONTENT.theme,
 } as const
 
@@ -110,12 +137,15 @@ export const ORGANIZATION_SCHEMA = {
 export const STRUCTURED_DATA = [EVENT_SCHEMA, WEBSITE_SCHEMA, ORGANIZATION_SCHEMA] as const
 
 export const SPONSORS_SEO = {
-  title: 'Partnership Proposal — TEDxSavskiVenac 2026',
+  title: 'Sponzorstvo i partnerstvo — TEDxSavskiVenac 2026 | TEDx Beograd',
   description:
-    'Become a partner of TEDxSavskiVenac 2026. Sponsorship packages from €200, in-kind partnerships, and exclusive access to 100 decision-makers in Belgrade.',
+    'Postanite partner TEDxSavskiVenac 2026 u Beogradu. Sponsorship packages from €200, in-kind partnerstvo, and access to 100 decision-makers at Startit Center.',
   keywords: [
     'TEDxSavskiVenac sponsorship',
+    'TEDx sponzorstvo',
+    'TEDx partnerstvo',
     'TEDx partner',
+    'TEDx Beograd',
     'Belgrade event sponsorship',
     'TEDx sponsorship packages',
     'IT Connect Belgrade',

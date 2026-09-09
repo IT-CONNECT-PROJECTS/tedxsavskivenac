@@ -12,7 +12,11 @@ export function SponsorsVenue() {
       <Container>
         <SectionTitle className={styles.title}>{SPONSORS_VENUE.title}</SectionTitle>
         <Text className={styles.text}>{SPONSORS_VENUE.text}</Text>
-        <img src={imageUrl} alt="Startit" className={styles.image} />
+        <img
+          src={imageUrl}
+          alt="Startit Center, Beograd — venue TEDxSavskiVenac 2026"
+          className={styles.image}
+        />
         <a
           href={STARTIT_LINKEDIN_URL}
           className={styles.link}
