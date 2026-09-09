@@ -1,6 +1,6 @@
 import { Button, Container, GhostLine, Highlight, InfoStrip, Section } from '@/uikit'
 import { HERO_CONTENT } from '@/constants/content'
-import { TICKETS_URL } from '@/constants/links'
+import { getTicketsUrl } from '@/constants/links'
 import styles from './Hero.module.scss'
 
 export function Hero() {
@@ -30,7 +30,7 @@ export function Hero() {
 
         <Button
           as="a"
-          href={TICKETS_URL}
+          href={getTicketsUrl()}
           variant="primary"
           size="lg"
           target="_blank"

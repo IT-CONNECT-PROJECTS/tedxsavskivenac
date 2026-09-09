@@ -1,6 +1,6 @@
 import { Button, Container, HeaderNav, Logo } from '@/uikit'
 import type { NavItem } from '@/uikit'
-import { TICKETS_URL } from '@/constants/links'
+import { getTicketsUrl } from '@/constants/links'
 import { NAV_ITEMS } from '@/constants/navigation'
 import styles from './Header.module.scss'
 
@@ -17,7 +17,7 @@ export function Header({ navItems = [...NAV_ITEMS] }: HeaderProps) {
           <HeaderNav items={navItems} />
           <Button
             as="a"
-            href={TICKETS_URL}
+            href={getTicketsUrl()}
             variant="ghost"
             size="sm"
             className={styles.tickets}
