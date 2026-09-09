@@ -1,131 +1,133 @@
-import { spawn } from 'node:child_process'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import puppeteer from 'puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 const dist = path.join(root, 'dist')
-const port = 4173
-const baseUrl = `http://127.0.0.1:${port}`
 
-const routes = [
-  {
-    path: '/',
-    outFile: path.join(dist, 'index.html'),
-    titleIncludes: 'Small Shifts, Big Impact',
-    titleExcludes: 'Sponzorstvo',
-  },
-  {
-    path: '/sponsors',
-    outFile: path.join(dist, 'sponsors', 'index.html'),
-    titleIncludes: 'Sponzorstvo',
-    titleExcludes: null,
-  },
-]
+// Keep in sync with src/constants/seo.ts (SPONSORS_SEO / SITE_URL)
+const SITE_URL = 'https://www.tedxsavskivenac.com'
+const SITE_NAME = 'TEDxSavskiVenac'
+const SPONSORS = {
+  title: 'Sponzorstvo i partnerstvo — TEDxSavskiVenac 2026 | TEDx Beograd',
+  description:
+    'Postanite partner TEDxSavskiVenac 2026 u Beogradu. Sponsorship packages from €200, in-kind partnerstvo, and access to 100 decision-makers at Startit Center.',
+  keywords: [
+    'TEDxSavskiVenac sponsorship',
+    'TEDx sponzorstvo',
+    'TEDx partnerstvo',
+    'TEDx partner',
+    'TEDx Beograd',
+    'Belgrade event sponsorship',
+    'TEDx sponsorship packages',
+    'IT Connect Belgrade',
+  ].join(', '),
+  url: `${SITE_URL}/sponsors`,
+  ogImage: `${SITE_URL}/og-image.png`,
+}
 
-function sanitizeHtml(html) {
-  // Drop ad pixels injected during the headless visit; keep the site's own gtag snippet.
-  return html.replace(
-    /<script[^>]*src="https:\/\/googleads\.g\.doubleclick\.net[^"]*"[^>]*><\/script>/gi,
-    '',
+function escapeAttr(value) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+}
+
+function replaceMetaByName(html, name, content) {
+  const re = new RegExp(
+    `(<meta\\s+name="${name}"\\s+content=")[^"]*(")`,
+    'i',
   )
-}
-
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-async function waitForServer(url, attempts = 40) {
-  for (let i = 0; i < attempts; i += 1) {
-    try {
-      const response = await fetch(url)
-      if (response.ok || response.status === 404) return
-    } catch {
-      // retry
-    }
-    await wait(250)
+  if (!re.test(html)) {
+    throw new Error(`Missing meta name="${name}" in built index.html`)
   }
-  throw new Error(`Preview server did not start at ${url}`)
+  return html.replace(re, `$1${escapeAttr(content)}$2`)
+}
+
+function replaceMetaByProperty(html, property, content) {
+  const re = new RegExp(
+    `(<meta\\s+property="${property}"\\s+content=")[^"]*(")`,
+    'i',
+  )
+  if (!re.test(html)) {
+    throw new Error(`Missing meta property="${property}" in built index.html`)
+  }
+  return html.replace(re, `$1${escapeAttr(content)}$2`)
+}
+
+function replaceCanonical(html, href) {
+  const re = /(<link\s+rel="canonical"\s+href=")[^"]*(")/i
+  if (!re.test(html)) {
+    throw new Error('Missing canonical link in built index.html')
+  }
+  return html.replace(re, `$1${escapeAttr(href)}$2`)
+}
+
+function replaceTitle(html, title) {
+  const re = /<title>[^<]*<\/title>/i
+  if (!re.test(html)) {
+    throw new Error('Missing <title> in built index.html')
+  }
+  return html.replace(re, `<title>${title}</title>`)
+}
+
+function injectCrawlableBody(html, page) {
+  const fallback = [
+    '<div id="root">',
+    '<div class="app-shell" data-prerender="sponsors">',
+    '<main>',
+    `<h1>${page.title}</h1>`,
+    `<p>${page.description}</p>`,
+    `<p><a href="${SITE_URL}">${SITE_NAME}</a> · Startit Center, Beograd</p>`,
+    '</main>',
+    '</div>',
+    '</div>',
+  ].join('')
+
+  const re = /<div id="root"><\/div>/i
+  if (!re.test(html)) {
+    // Vite may minify or already expand root — force a known empty root shell
+    return html.replace(
+      /<div id="root"[^>]*>[\s\S]*?<\/div>\s*(?=<script)/i,
+      `${fallback}\n    `,
+    )
+  }
+  return html.replace(re, fallback)
+}
+
+function buildSponsorsHtml(homeHtml) {
+  let html = homeHtml
+  html = replaceTitle(html, SPONSORS.title)
+  html = replaceMetaByName(html, 'description', SPONSORS.description)
+  html = replaceMetaByName(html, 'keywords', SPONSORS.keywords)
+  html = replaceCanonical(html, SPONSORS.url)
+  html = replaceMetaByProperty(html, 'og:title', SPONSORS.title)
+  html = replaceMetaByProperty(html, 'og:description', SPONSORS.description)
+  html = replaceMetaByProperty(html, 'og:url', SPONSORS.url)
+  html = replaceMetaByProperty(html, 'og:image', SPONSORS.ogImage)
+  html = replaceMetaByName(html, 'twitter:title', SPONSORS.title)
+  html = replaceMetaByName(html, 'twitter:description', SPONSORS.description)
+  html = replaceMetaByName(html, 'twitter:image', SPONSORS.ogImage)
+  html = injectCrawlableBody(html, SPONSORS)
+  return html
 }
 
 async function main() {
-  const preview = spawn(
-    'npx',
-    ['vite', 'preview', '--host', '127.0.0.1', '--port', String(port), '--strictPort'],
-    {
-      cwd: root,
-      stdio: ['ignore', 'pipe', 'pipe'],
-      env: { ...process.env, FORCE_COLOR: '0' },
-    },
-  )
+  const homePath = path.join(dist, 'index.html')
+  const sponsorsPath = path.join(dist, 'sponsors', 'index.html')
 
-  let previewLog = ''
-  preview.stdout.on('data', (chunk) => {
-    previewLog += chunk.toString()
-  })
-  preview.stderr.on('data', (chunk) => {
-    previewLog += chunk.toString()
-  })
+  const homeHtml = await readFile(homePath, 'utf8')
+  const sponsorsHtml = buildSponsorsHtml(homeHtml)
 
-  const shutdown = () => {
-    if (!preview.killed) preview.kill('SIGTERM')
-  }
+  await mkdir(path.dirname(sponsorsPath), { recursive: true })
+  await writeFile(sponsorsPath, sponsorsHtml)
 
-  process.on('exit', shutdown)
-  process.on('SIGINT', () => {
-    shutdown()
-    process.exit(1)
-  })
-
-  try {
-    await waitForServer(baseUrl)
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    })
-
-    try {
-      for (const route of routes) {
-        const page = await browser.newPage()
-        await page.goto(`${baseUrl}${route.path}`, {
-          waitUntil: 'networkidle0',
-          timeout: 60_000,
-        })
-
-        await page.waitForFunction(
-          (expected, excluded) => {
-            const rootEl = document.getElementById('root')
-            const titleOk =
-              document.title.includes(expected) &&
-              (!excluded || !document.title.includes(excluded))
-            return Boolean(rootEl?.childElementCount) && titleOk
-          },
-          { timeout: 30_000 },
-          route.titleIncludes,
-          route.titleExcludes,
-        )
-
-        // Extra tick so Seo useEffect meta upserts settle
-        await wait(300)
-
-        const html = sanitizeHtml(await page.content())
-        await mkdir(path.dirname(route.outFile), { recursive: true })
-        await writeFile(route.outFile, `<!DOCTYPE html>\n${html}`)
-        console.log(`Prerendered ${route.path} → ${path.relative(root, route.outFile)}`)
-        await page.close()
-      }
-    } finally {
-      await browser.close()
-    }
-  } catch (error) {
-    console.error('Prerender failed:', error)
-    if (previewLog) console.error(previewLog)
-    process.exitCode = 1
-  } finally {
-    shutdown()
-  }
+  console.log(`Prerendered /sponsors → ${path.relative(root, sponsorsPath)} (static, no browser)`)
 }
 
-main()
+main().catch((error) => {
+  console.error('Prerender failed:', error)
+  process.exitCode = 1
+})
