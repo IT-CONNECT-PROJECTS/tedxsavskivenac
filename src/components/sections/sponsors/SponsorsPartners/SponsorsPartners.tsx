@@ -29,6 +29,7 @@ export function SponsorsPartners() {
                     styles.logo,
                     partner.invertLogo ? styles.logoInvert : '',
                     partner.whiteLogo ? styles.logoWhite : '',
+                    partner.lightBg ? styles.logoLightBg : '',
                   ]
                     .filter(Boolean)
                     .join(' ')}

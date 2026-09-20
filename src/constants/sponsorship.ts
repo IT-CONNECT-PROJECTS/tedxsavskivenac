@@ -177,6 +177,7 @@ export type SponsorPartner = {
   linkLabel: string
   invertLogo?: boolean
   whiteLogo?: boolean
+  lightBg?: boolean
 }
 
 export const SPONSORS_PARTNERS = {
@@ -215,6 +216,32 @@ export const SPONSORS_PARTNERS = {
       description: 'The first original Dutch stroopwafel in Serbia.',
       url: 'https://www.instagram.com/adam_stroopwafel',
       linkLabel: 'Instagram',
+    },
+    {
+      name: 'IT Connect',
+      logo: 'it_connect_logo_full_main_ezfda6',
+      description:
+        "Belgrade's IT community of 7,000+ professionals — information partner of TEDxSavskiVenac.",
+      url: 'https://www.itconnect.community/',
+      linkLabel: 'Website',
+      lightBg: true,
+    },
+    {
+      name: 'ICT Hub',
+      logo: 'icthub-logo_2x_wvatml',
+      description:
+        'Belgrade innovation hub helping people, startups, and companies grow through consulting, education, and coworking since 2014.',
+      url: 'https://www.icthub.rs/',
+      linkLabel: 'Website',
+      lightBg: true,
+    },
+    {
+      name: 'Petlja',
+      logo: 'Logo_i_text_transparent_pka3gq',
+      description:
+        'A Serbian foundation making programming and algorithmic thinking accessible through free courses, competitions, and teacher resources.',
+      url: 'https://petlja.org/',
+      linkLabel: 'Website',
     },
   ] satisfies SponsorPartner[],
   ctaCard: {
