@@ -243,6 +243,14 @@ export const SPONSORS_PARTNERS = {
       url: 'https://petlja.org/',
       linkLabel: 'Website',
     },
+    {
+      name: 'Raskat',
+      logo: 'raskat_png_tmcccc',
+      description: 'Rental of PHOTO and VIDEO equipment in Belgrade and Serbia',
+      url: 'https://srb.raskat.rent/',
+      linkLabel: 'Website',
+      lightBg: true,
+    },
   ] satisfies SponsorPartner[],
   ctaCard: {
     title: 'Become a Partner',
