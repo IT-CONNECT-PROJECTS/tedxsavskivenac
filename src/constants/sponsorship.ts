@@ -249,8 +249,16 @@ export const SPONSORS_PARTNERS = {
       description: 'Rental of PHOTO and VIDEO equipment in Belgrade and Serbia',
       url: 'https://srb.raskat.rent/',
       linkLabel: 'Website',
-      lightBg: true,
+      invertLogo: true,
     },
+    {
+      name: 'Stroganov',
+      logo: 'stroganov-main-white_x4inin',
+      description: 'Russian cuisine delivery in Belgrade',
+      url: 'https://stroganov.rs/',
+      linkLabel: 'Website',
+    },
+
   ] satisfies SponsorPartner[],
   ctaCard: {
     title: 'Become a Partner',
