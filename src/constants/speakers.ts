@@ -39,7 +39,7 @@ export const SPEAKERS: Speaker[] = [
   {
     name: 'Dmitrii Ilenkov',
     photo: 'аватар_f1pbyt',
-    topic: 'P3․express method: keep it simple, make it big',
+    topic: 'P3․express method: keep it simple',
     bio: 'Author, entrepreneur',
     contacts: null,
     confirmed: true,
