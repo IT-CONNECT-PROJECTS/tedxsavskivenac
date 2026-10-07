@@ -32,8 +32,8 @@ export const SEO = {
   themeColor: '#000000',
   ogImage: `${SITE_URL}/og-image.png`,
   eventDate: '2026-10-10',
-  eventStartTime: '10:00',
-  eventEndTime: '18:00',
+  eventStartTime: '13:00',
+  eventEndTime: '19:00',
   venueName: 'Startit Center',
   venueCity: 'Belgrade',
   venueCountry: 'RS',
@@ -154,3 +154,21 @@ export const SPONSORS_SEO = {
 } as const
 
 export const SPONSORS_URL = `${SITE_URL}/sponsors`
+
+export const PROGRAM_SEO = {
+  title: 'Program — TEDxSavskiVenac 2026 | TEDx Beograd',
+  description:
+    'Program TEDxSavskiVenac 2026: October 10, Startit Center, Beograd. Three sessions, nine TEDx talks, speaker corners, quiz and networking — 13:00 to 19:00.',
+  keywords: [
+    'TEDxSavskiVenac program',
+    'TEDxSavskiVenac schedule',
+    'TEDx Beograd program',
+    'TEDx Belgrade speakers',
+    'TEDx talks Beograd',
+    'Startit Center',
+    'Small Shifts Big Impact',
+  ].join(', '),
+  ogImage: SEO.ogImage,
+} as const
+
+export const PROGRAM_URL = `${SITE_URL}/program`

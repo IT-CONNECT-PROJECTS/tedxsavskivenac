@@ -35,6 +35,7 @@ export function getTicketsUrl(
 
 
 export const SPONSORS_PATH = '/sponsors'
+export const PROGRAM_PATH = '/program'
 export const STARTIT_LINKEDIN_URL = 'https://www.linkedin.com/company/startitrs'
 export const INSTAGRAM_URL = 'https://instagram.com/tedxsavskivenac'
 export const INSTAGRAM_HANDLE = '@tedxsavskivenac'

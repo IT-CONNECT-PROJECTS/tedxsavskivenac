@@ -1,9 +1,23 @@
 import { useEffect } from 'react'
-import { SEO, SITE_URL, SPONSORS_SEO, SPONSORS_URL, STRUCTURED_DATA } from '@/constants/seo'
+import {
+  PROGRAM_SEO,
+  PROGRAM_URL,
+  SEO,
+  SITE_URL,
+  SPONSORS_SEO,
+  SPONSORS_URL,
+  STRUCTURED_DATA,
+} from '@/constants/seo'
 
 const STRUCTURED_DATA_ID = 'tedx-structured-data'
 
-type SeoPage = 'home' | 'sponsors'
+type SeoPage = 'home' | 'sponsors' | 'program'
+
+const PAGE_META = {
+  home: { meta: SEO, url: SITE_URL },
+  sponsors: { meta: SPONSORS_SEO, url: SPONSORS_URL },
+  program: { meta: PROGRAM_SEO, url: PROGRAM_URL },
+} as const
 
 type SeoProps = {
   page?: SeoPage
@@ -37,9 +51,7 @@ function upsertLink(rel: string, href: string) {
 
 export function Seo({ page = 'home' }: SeoProps) {
   useEffect(() => {
-    const isSponsors = page === 'sponsors'
-    const meta = isSponsors ? SPONSORS_SEO : SEO
-    const pageUrl = isSponsors ? SPONSORS_URL : SITE_URL
+    const { meta, url: pageUrl } = PAGE_META[page]
 
     document.title = meta.title
     document.documentElement.lang = 'en'

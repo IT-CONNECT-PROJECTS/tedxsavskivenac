@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 const dist = path.join(root, 'dist')
 
-// Keep in sync with src/constants/seo.ts (SPONSORS_SEO / SITE_URL)
+// Keep in sync with src/constants/seo.ts (SPONSORS_SEO / PROGRAM_SEO / SITE_URL)
 const SITE_URL = 'https://www.tedxsavskivenac.com'
 const SITE_NAME = 'TEDxSavskiVenac'
 const SPONSORS = {
@@ -25,6 +25,24 @@ const SPONSORS = {
   ].join(', '),
   url: `${SITE_URL}/sponsors`,
   ogImage: `${SITE_URL}/og-image.png`,
+  slug: 'sponsors',
+}
+const PROGRAM = {
+  title: 'Program — TEDxSavskiVenac 2026 | TEDx Beograd',
+  description:
+    'Program TEDxSavskiVenac 2026: October 10, Startit Center, Beograd. Three sessions, nine TEDx talks, speaker corners, quiz and networking — 13:00 to 19:00.',
+  keywords: [
+    'TEDxSavskiVenac program',
+    'TEDxSavskiVenac schedule',
+    'TEDx Beograd program',
+    'TEDx Belgrade speakers',
+    'TEDx talks Beograd',
+    'Startit Center',
+    'Small Shifts Big Impact',
+  ].join(', '),
+  url: `${SITE_URL}/program`,
+  ogImage: `${SITE_URL}/og-image.png`,
+  slug: 'program',
 }
 
 function escapeAttr(value) {
@@ -76,7 +94,7 @@ function replaceTitle(html, title) {
 function injectCrawlableBody(html, page) {
   const fallback = [
     '<div id="root">',
-    '<div class="app-shell" data-prerender="sponsors">',
+    `<div class="app-shell" data-prerender="${page.slug}">`,
     '<main>',
     `<h1>${page.title}</h1>`,
     `<p>${page.description}</p>`,
@@ -97,34 +115,32 @@ function injectCrawlableBody(html, page) {
   return html.replace(re, fallback)
 }
 
-function buildSponsorsHtml(homeHtml) {
+function buildPageHtml(homeHtml, page) {
   let html = homeHtml
-  html = replaceTitle(html, SPONSORS.title)
-  html = replaceMetaByName(html, 'description', SPONSORS.description)
-  html = replaceMetaByName(html, 'keywords', SPONSORS.keywords)
-  html = replaceCanonical(html, SPONSORS.url)
-  html = replaceMetaByProperty(html, 'og:title', SPONSORS.title)
-  html = replaceMetaByProperty(html, 'og:description', SPONSORS.description)
-  html = replaceMetaByProperty(html, 'og:url', SPONSORS.url)
-  html = replaceMetaByProperty(html, 'og:image', SPONSORS.ogImage)
-  html = replaceMetaByName(html, 'twitter:title', SPONSORS.title)
-  html = replaceMetaByName(html, 'twitter:description', SPONSORS.description)
-  html = replaceMetaByName(html, 'twitter:image', SPONSORS.ogImage)
-  html = injectCrawlableBody(html, SPONSORS)
+  html = replaceTitle(html, page.title)
+  html = replaceMetaByName(html, 'description', page.description)
+  html = replaceMetaByName(html, 'keywords', page.keywords)
+  html = replaceCanonical(html, page.url)
+  html = replaceMetaByProperty(html, 'og:title', page.title)
+  html = replaceMetaByProperty(html, 'og:description', page.description)
+  html = replaceMetaByProperty(html, 'og:url', page.url)
+  html = replaceMetaByProperty(html, 'og:image', page.ogImage)
+  html = replaceMetaByName(html, 'twitter:title', page.title)
+  html = replaceMetaByName(html, 'twitter:description', page.description)
+  html = replaceMetaByName(html, 'twitter:image', page.ogImage)
+  html = injectCrawlableBody(html, page)
   return html
 }
 
 async function main() {
-  const homePath = path.join(dist, 'index.html')
-  const sponsorsPath = path.join(dist, 'sponsors', 'index.html')
+  const homeHtml = await readFile(path.join(dist, 'index.html'), 'utf8')
 
-  const homeHtml = await readFile(homePath, 'utf8')
-  const sponsorsHtml = buildSponsorsHtml(homeHtml)
-
-  await mkdir(path.dirname(sponsorsPath), { recursive: true })
-  await writeFile(sponsorsPath, sponsorsHtml)
-
-  console.log(`Prerendered /sponsors → ${path.relative(root, sponsorsPath)} (static, no browser)`)
+  for (const page of [SPONSORS, PROGRAM]) {
+    const pagePath = path.join(dist, page.slug, 'index.html')
+    await mkdir(path.dirname(pagePath), { recursive: true })
+    await writeFile(pagePath, buildPageHtml(homeHtml, page))
+    console.log(`Prerendered /${page.slug} → ${path.relative(root, pagePath)} (static, no browser)`)
+  }
 }
 
 main().catch((error) => {
