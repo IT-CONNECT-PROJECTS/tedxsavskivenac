@@ -30,7 +30,7 @@ export function TeamCard({ member }: TeamCardProps) {
 
       <div className={styles.body}>
         <h3 className={styles.name}>{member.name}</h3>
-        <p className={styles.role}>{member.role}</p>
+        {/*<p className={styles.role}>{member.role}</p>*/}
 
         {contacts.length > 0 && (
           <div className={styles.contacts}>
