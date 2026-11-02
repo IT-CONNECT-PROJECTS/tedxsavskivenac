@@ -5,6 +5,8 @@ import { Header } from '@/components/sections/Header/Header'
 import { Hero } from '@/components/sections/Hero/Hero'
 import { Numbers } from '@/components/sections/Numbers/Numbers'
 import { Partnership } from '@/components/sections/Partnership/Partnership'
+import { Photographers } from '@/components/sections/Photographers/Photographers'
+import { Recap } from '@/components/sections/Recap/Recap'
 import { Speakers } from '@/components/sections/Speakers/Speakers'
 import { Team } from '@/components/sections/Team/Team'
 import { Seo } from '@/components/Seo/Seo'
@@ -17,6 +19,8 @@ export function HomePage() {
       <Header navItems={[...NAV_ITEMS]} />
       <main>
         <Hero />
+        <Recap />
+        <Photographers />
         <About />
         <Speakers />
         <Team />
